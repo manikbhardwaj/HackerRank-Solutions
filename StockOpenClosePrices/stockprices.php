@@ -1,7 +1,4 @@
 <?php
-
-
-
 /*
  * Complete the 'test' function below.
  *
@@ -14,7 +11,6 @@
 function test($firstDate, $secondDate, $dayOfWeek)
 {
     file_get_contents('https://jsonmock.hackerrank.com/api/stocks');
-
     $weekdays = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
     $startDate = strtotime('5-January-2000');
     $endDate = strtotime('1-January-2014');
@@ -31,7 +27,6 @@ function test($firstDate, $secondDate, $dayOfWeek)
     } else {
         do {
             $tempDate = strtotime("{$dayOfWeek}", $from);
-            //echo date('j-F-Y',$tempDate);
             $url = "https://jsonmock.hackerrank.com/api/stocks/?date=".date('j-F-Y', $tempDate);
             $theResponse = file_get_contents($url);
             $result = json_decode($theResponse);
@@ -40,7 +35,6 @@ function test($firstDate, $secondDate, $dayOfWeek)
             } else {
                 foreach ($result->data as $res) {
                     echo $res->date." ".$res->open." ".$res->close."\n";
-
                     $from = strtotime("+7 day", $tempDate);
                 }
             }
